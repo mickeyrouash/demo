@@ -1,12 +1,11 @@
-#!groovy
-
 pipeline {
     environment {
-        JAVA_TOOL_OPTIONS = "-Duser.home=/var/maven/"
+        //JAVA_TOOL_OPTIONS = "-Duser.home=/var/maven/"
+        test = "pppp"
     }
     agent {
         docker {
-            image "maven:3.6.0-jdk-13"
+            image "maven:3.6.0-jdk-8"
             //label "docker"
             args "-v /tmp/maven:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2"
         }
@@ -15,17 +14,35 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git changelog: false, poll: false, url: 'https://github.com/mickeyrouash/simple-java-maven-app', branch: 'master'
+                git changelog: false, poll: false, url: 'https://github.com/mickeyrouash/demo', branch: 'master'
                
             }
         }
         stage("Build") {
             steps {
                // sh "ssh -V"
-                sh "mvn -version"
-                sh "mvn clean install"
+               sh "mvn -version"
+               sh "mvn clean install"
             }
         }
+        stage("Test") {
+            steps {
+               // sh "ssh -V"
+              sh "mvn test"
+            }
+        }
+        stage('Building our image') { 
+          steps {
+           script {
+                //dockerImage = docker.build "$registry:latest"
+                //dockerImage = docker.build "$registry:${params.RELEASE_TAG}"
+                sh 'sh run_docker_build.sh'
+                  
+           }
+        }
+   
+        } 
+        
     }
 
    
