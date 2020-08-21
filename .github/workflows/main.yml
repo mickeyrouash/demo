@@ -16,11 +16,12 @@ jobs:
     #if: github.repository == 'hasadna/anyway'
     runs-on: ubuntu-18.04
     steps:
-    #- uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with: 
+         repository: hasadna/anyway-reports
     - name: Build and push anyway Docker image
       uses: docker/build-push-action@v1.0.1
       with:
-        repository: hasadna/anyway-reports
         tag_with_ref: true
         tag_with_sha: true
         cache_from: ${{ env.DOCKER_REPOSITORY_ANYWAY }}:test
