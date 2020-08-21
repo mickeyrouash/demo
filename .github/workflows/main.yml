@@ -18,9 +18,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
+           run: mkdir anyway-reports && cd anyway-reports 
            repository: hasadna/anyway-reports
            working-directory: ./anyway-reports
-           run: ls -R
+           
     - uses: actions/checkout@v2
     - name: Build and push anyway Docker image
       uses: docker/build-push-action@v1.0.1
