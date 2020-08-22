@@ -39,8 +39,7 @@ jobs:
       - shell: bash
     env:
       SUPER_SECRET: ${{ secrets.DOCKER_USERNAME }}
-      run: |
-      echo "$SUPER_SECRET"
+      run: echo "$SUPER_SECRET"
 
   # This workflow contains a single job called "build"
   build:
