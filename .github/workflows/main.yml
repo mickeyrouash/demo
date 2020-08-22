@@ -29,12 +29,19 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
         repository: mickeyrouash/demo
         tag_with_ref: true
-        tag_with_sha: true
+        #tag_with_sha: true
        # cache_from: ${{ env.DOCKER_REPOSITORY_ANYWAY }}:test
-        run: ls -R  
         
+        
+  print:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+    env:
+      SUPER_SECRET: ${{ secrets.DOCKER_USERNAME }}
+      run: |
+      echo "$SUPER_SECRET"
 
-         
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
@@ -44,7 +51,8 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
+    
+   
     # Runs a single command using the runners shell
     - name: Run a one-line script
       run: echo "${{ secrets.DOCKER_USERNAME }}  ${{ secrets.DOCKER_PASSWORD }} ${{ secrets.GITHUB_WORKSPACE }}" && ls -lR
