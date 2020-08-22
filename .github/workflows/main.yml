@@ -22,7 +22,7 @@ jobs:
            repository: hasadna/anyway-reports
            working-directory: ./anyway-reports
            
-    - uses: actions/checkout@v2
+    #- uses: actions/checkout@v2
     - name: Build and push anyway Docker image
       uses: docker/build-push-action@v1.0.1
       with:
