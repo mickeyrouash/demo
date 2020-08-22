@@ -21,13 +21,15 @@ jobs:
            #run: mkdir anyway-reports && cd anyway-reports 
            repository: hasadna/anyway-reports
            run: ls -R      
-    #- uses: actions/checkout@v2
+    - uses: actions/checkout@v2
     - name: Build and push anyway Docker image
       uses: docker/build-push-action@v1.0.1
       with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
         tag_with_ref: true
         tag_with_sha: true
-        cache_from: ${{ env.DOCKER_REPOSITORY_ANYWAY }}:test
+       # cache_from: ${{ env.DOCKER_REPOSITORY_ANYWAY }}:test
         run: ls -R  
         
 
