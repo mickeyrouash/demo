@@ -20,8 +20,7 @@ jobs:
       with:
            #run: mkdir anyway-reports && cd anyway-reports 
            repository: hasadna/anyway-reports
-           
-      run: ls -R      
+           run: ls -R      
     #- uses: actions/checkout@v2
     - name: Build and push anyway Docker image
       uses: docker/build-push-action@v1.0.1
@@ -29,6 +28,8 @@ jobs:
         tag_with_ref: true
         tag_with_sha: true
         cache_from: ${{ env.DOCKER_REPOSITORY_ANYWAY }}:test
+        run: ls -R  
+        
 
          
   # This workflow contains a single job called "build"
