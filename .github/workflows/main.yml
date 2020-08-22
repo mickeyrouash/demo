@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
            #run: mkdir anyway-reports && cd anyway-reports 
-           repository: hasadna/anyway-reports
+           repository: mickeyrouash/anyway-reports
           # run: ls -R      
     #- uses: actions/checkout@v2
     - name: Run a one-line script
